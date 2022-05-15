@@ -1,6 +1,6 @@
 let containerSelector = 'body'
 let tasks = [];
-const addInputValue = (e) => {
+const addTask = (e) => {
   e.preventDefault();
   const task = e.target.parentNode.firstChild.value;
   tasks = tasks.concat(task);
@@ -18,7 +18,7 @@ const createForm = (formContainer) => {
   input.setAttribute("placeholder", "Enter your task");
   const button = document.createElement("button");
   button.classList.add("button");
-  button.addEventListener("click", addInputValue);
+  button.addEventListener("click", addTask);
   button.innerHTML = "Add";
   form.appendChild(input);
   form.appendChild(button);
