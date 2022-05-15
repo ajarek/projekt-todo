@@ -1,10 +1,10 @@
-let bodyContainer = document.body;
+const containerSelector = "body";
 let tasks = [];
 const addInputValue = (e) => {
   e.preventDefault();
   const task = e.target.parentNode.firstChild.value;
   tasks = tasks.concat(task);
-  render();
+  render(containerSelector);
 };
 
 const createForm = (formContainer) => {
@@ -27,30 +27,31 @@ const createForm = (formContainer) => {
   return formContainer;
 };
 
-const renderTask = function (task) {
+const createList = function (task) {
   const li = document.createElement("li");
   li.innerText = task;
   return li;
 };
 
-const renderTasks = () => {
-  const tasksContainer = document.createElement("div");
+const createTasks = (tasksContainer) => {
+  const container = document.createElement("div");
   const ol = document.createElement("ol");
   for (let i = 0; i < tasks.length; i++) {
-    const li = renderTask(tasks[i]);
+    const li = createList(tasks[i]);
     ol.appendChild(li);
   }
-  tasksContainer.appendChild(ol);
+  container.appendChild(ol);
+  tasksContainer.appendChild(container)
   return tasksContainer;
 };
 
-const render = (containerSelector = "body") => {
+const render = (containerSelector ) => {
   const container = document.querySelector(containerSelector);
   if (!container) return;
   container.innerHTML = "";
-  createForm(bodyContainer);
-  const tasksContainer = renderTasks();
-  container.appendChild(tasksContainer);
+  createForm(container);
+  createTasks(container);
+  
 };
 
-createForm(bodyContainer);
+createForm(document.querySelector(containerSelector));
