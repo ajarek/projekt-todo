@@ -10,8 +10,11 @@ const saveTasks = function () {
 
 const addTask = (e) => {
   e.preventDefault();
-  const task = e.target.parentNode.firstChild.value
-  tasks.push(task);
+  const task ={
+    text: e.target.parentNode.firstChild.value,
+    time: new Date().toLocaleString()
+  }
+ tasks=tasks.concat(task);
   saveTasks();
   render(containerSelector)
   
@@ -39,7 +42,7 @@ const createForm = (formContainer) => {
 
 const createList = function (task) {
   const li = document.createElement("li")
-  li.innerText = task
+  li.innerText = task.text+' ;created: '+task.time
   return li
 }
 
